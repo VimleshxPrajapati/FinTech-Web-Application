@@ -1,0 +1,175 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Dashboard Section start -->
+    <section class="dashboard-section body-collapse account">
+        <div class="overlay pt-120">
+            <div class="container-fruid">
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
+                            <div class="owner-details">
+                                <div class="profile-area">
+                                    <div class="profile-img">
+                                        <img style="width:100px;height: 100px;border-radius: 50%;object-fit: cover;" src="{{kyc.image.url}}" alt="image">
+                                    </div>
+                                    <div class="name-area">
+                                        <h6>{{kyc.full_name|title}}</h6>
+                                        {% if account.account_status == "in-active" %}
+                                            <p class="active-status text-danger">{{account.account_status}}</p>
+                                        {% endif %}
+                                        {% if account.account_status == "active" %}
+                                            <p class="active-status">{{account.account_status}}</p>
+                                        {% endif %}
+                                        {% if account.account_status == "pending" %}
+                                            <p class="active-status text-warning">{{account.account_status}}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="owner-info">
+                                    <ul>
+                                        <li>
+                                            <p>Account No:</p>
+                                            <span class="mdr">{{account.account_number}}</span>
+                                        </li>
+                                        <li>
+                                            <p>Pin No:</p>
+                                            <span class="mdr">{{account.pin_number}}</span>
+                                        </li>
+                                        <li>
+                                            <p>Joined:</p>
+                                            <span class="mdr"><small>{{account.date|date:'d,M,Y'}}</small></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="owner-action">
+                                    {% if request.user.is_authenticated %}
+                                    <a href="{% url 'userauths:sign-out' %}">
+                                        <img src="{% static "assets1/images/icon/logout.png" %}" alt="image">
+                                        Logout
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-9 col-xl-8">
+                            <div class="tab-main">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">Account</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content mt-40">
+                                    <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                                        <div class="upload-avatar">
+                                            <div class="avatar-left d-flex align-items-center">
+                                                <div class="profile-img">
+                                                    <img style="width:100px;height: 100px;border-radius: 50%;object-fit: cover;" src="{{kyc.image.url}}" alt="image">
+                                                </div>
+                                                <div class="instraction">
+                                                    <h6>Your Avatar</h6>
+                                                </div>
+                                            </div>
+                                
+                                        </div>
+                                        <form action="kyc-reg">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="fName">Full Name</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.full_name|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="fName">Email</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.user.email}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="fName">Gender</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.gender|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="fName">Marrital</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.marrital_status|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        <label for="fName">Date OF Birth</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.date_of_birth|date:'d,M,Y'}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        <label for="fName">Mobile</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.mobile|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        <label for="fName">Identity Type</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.identity_type|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        <label for="fName">Country</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.country|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        <label for="fName">State</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.state|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        <label for="fName">City</label>
+                                                        <input type="text" id="fName" readonly  placeholder="" value="{{kyc.city|title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" style="padding-top :50px;">
+                                                    <div class="single-input">
+                                                        <label for="fName">Select Identity Image</label>
+                                                        {{form.identity_image}}
+                                                        {% if kyc.identity_image %}
+                                                           <img src="{{kyc.identity_image.url}}" style="width:400px;height:200px;border-radius: 10px;object-fit: cover; padding-top: 10px;">
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" style="padding-top :50px;">
+                                                    <div class="single-input">
+                                                        <label for="fName">Select Signature Image</label>
+                                                        {{form.signature}}
+                                                        {% if kyc.signature %}
+                                                           <img src="{{kyc.signature.url}}" style="width:400px;height:200px;border-radius: 10px;object-fit: cover; padding-top: 10px;">
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="btn-border">
+                                                        <button class="cmn-btn">Edit KYC</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Dashboard Section end -->  
+{% endblock content %}
+
+   
